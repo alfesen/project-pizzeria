@@ -88,12 +88,10 @@
         /* prevent default action on event */
         event.preventDefault();
         /* find active product */
-        const activeProduct = thisProduct.element.querySelector(classNames.menuProduct.wrapperActive);
-        console.log('activeProduct: ', activeProduct);
+        const activeProduct = document.querySelector(select.all.menuProductsActive);
         /* if there is active product and it's not thisProduct.element remove class active from it */
-        if(activeProduct !== null){
+        if (activeProduct && activeProduct != thisProduct.element){
           activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
-          console.log('activeClass removed');
         }
         /* toggle active class on thisProduct.element */
         thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
