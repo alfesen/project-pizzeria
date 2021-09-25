@@ -89,6 +89,7 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     }
 
     initAccordion(){
@@ -133,6 +134,7 @@
       console.log(thisProduct);
       // convert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.form);
+      const imageData = utils.serializeFormToObject(thisProduct.imageWrapper);
       console.log('formData: ', formData);
       // set price to default price
       let price = thisProduct.data.price;
@@ -146,16 +148,24 @@
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
           console.log(optionId, option);
+          const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+          console.log('optionImage: ', optionImage);
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
 
-          if(formData[paramId] && formData[paramId].includes(optionId)){
+          if(optionSelected){
             if(!option.default === true){
               price += option.price;
             } 
           } else {
             if(option.default === true){
               price -= option.price;
+              optionImage.classList.remove('active');
             }
-            
+          }
+          if(optionImage){
+            if(optionSelected){
+              optionImage.classList.add('active');
+            }
           }
         }
       }
