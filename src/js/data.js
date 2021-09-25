@@ -65,6 +65,7 @@ dataSource.products = {
           mushrooms: {label: 'Mushrooms', price: 2, default: true},
           basil: {label: 'Fresh basil', price: 2, default: true},
           salami: {label: 'Salami', price: 3},
+          cucumbers: {label: 'Cucumbers', price: 29},
         },
       },
       crust: {
