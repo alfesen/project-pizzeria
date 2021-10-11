@@ -1,5 +1,3 @@
-
-
 export const select = {
   templateOf: {
     menuProduct: '#template-menu-product',
@@ -40,15 +38,16 @@ export const select = {
       input: 'input[type="range"]',
       output: '.output',
     },
-    booking: {
-      peopleAmount: '.people-amount',
-      hoursAmount: '.hours-amount',
-      tables: '.floor-plan .table',
-    },
-    nav: {
-      links: '.main-nav a',
-    },
   },
+  booking: {
+    peopleAmount: '.people-amount',
+    hoursAmount: '.hours-amount',
+    tables: '.floor-plan .table',
+  },
+  nav: {
+    links: '.main-nav a',
+  },
+
   cart: {
     productList: '.cart__order-summary',
     toggleTrigger: '.cart__summary',
@@ -68,7 +67,7 @@ export const select = {
     remove: '[href="#remove"]',
   },
 };
-  
+
 export const classNames = {
   menuProduct: {
     wrapperActive: 'active',
@@ -88,8 +87,8 @@ export const classNames = {
     active: 'active',
   }
 };
-  
-export const settings = { 
+
+export const settings = {
   amountWidget: {
     defaultValue: 1,
     defaultMin: 1,
@@ -120,7 +119,7 @@ export const settings = {
     tableIdAttribute: 'data-table',
   },
 };
-  
+
 export const templates = {
   menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML), //eslint-disable-line
   cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML), //eslint-disable-line
