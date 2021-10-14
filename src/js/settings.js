@@ -76,7 +76,7 @@ export const classNames = {
   cart: {
     wrapperActive: 'active',
   },
-  booking: {
+  bookings: {
     loading: 'loading',
     tableBooked: 'booked',
   },
@@ -101,8 +101,8 @@ export const settings = {
     url: '//localhost:3131',
     products: 'products',
     orders: 'orders',
-    booking: 'booking',
-    event: 'event',
+    bookings: 'bookings',
+    events: 'events',
     dateStartParamKey: 'date_gte',
     dateEndParamKey: 'date_lte',
     notRepeatParam: 'repeat=false',
