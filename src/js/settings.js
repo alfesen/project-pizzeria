@@ -77,6 +77,8 @@ export const classNames = {
     wrapperActive: 'active',
   },
   bookings: {
+    tableSelected: 'selected',
+    table: 'table',
     loading: 'loading',
     tableBooked: 'booked',
   },
