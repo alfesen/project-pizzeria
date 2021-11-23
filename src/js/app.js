@@ -7,6 +7,7 @@ import {
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import Home from './components/Home.js';
 
 export const app = {
 
@@ -111,6 +112,7 @@ export const app = {
     thisApp.initCart();
     thisApp.initPages();
     thisApp.initBooking();
+    thisApp.initHome();
   },
 
   initCart: function () {
@@ -125,6 +127,11 @@ export const app = {
       app.cart.add(event.detail.product);
     });
   },
+  initHome: function() {
+    const thisApp = this;
+
+    thisApp.home = new Home();
+  }
 };
 
 app.init();
