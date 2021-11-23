@@ -3,12 +3,16 @@ export const select = {
     menuProduct: '#template-menu-product',
     cartProduct: '#template-cart-product',
     bookingWidget: '#template-booking-widget',
+    images: '#template-images',
+    homePage: '#template-home-page',
   },
   containerOf: {
     menu: '#product-list',
     cart: '#cart',
     pages: '#pages',
-    booking: '.booking-wrapper',
+    booking: '#booking',
+    home: '#home-page',
+    gallery: '#gallery',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -70,6 +74,11 @@ export const select = {
     edit: '[href="#edit"]',
     remove: '[href="#remove"]',
   },
+  home: {
+    starter: '.starter',
+    homeOrders: '.home-orders',
+    links: '.starter-line a',
+  }
 };
 
 export const classNames = {
@@ -90,6 +99,9 @@ export const classNames = {
     active: 'active',
   },
   pages: {
+    active: 'active',
+  },
+  links: {
     active: 'active',
   }
 };
@@ -130,4 +142,5 @@ export const templates = {
   menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML), //eslint-disable-line
   cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML), //eslint-disable-line
   bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML), //eslint-disable-line
+  homePage: Handlebars.compile(document.querySelector(select.templateOf.homePage).innerHTML), //eslint-disable-line
 };
