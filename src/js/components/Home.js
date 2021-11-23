@@ -3,11 +3,10 @@ import {select, templates} from './../settings.js';
 import {utils} from './../utils.js';
 
 class Home {
-  constructor(element){
+  constructor(){
     const thisHome = this;
     app.initHome.homeContainerOf;
-    thisHome.render(element);
-    thisHome.initWidgets();
+    thisHome.render();
   }
 
   render() {
@@ -18,7 +17,11 @@ class Home {
     const homeContainer = document.querySelector(select.containerOf.home);
     homeContainer.appendChild(thisHome.element);
 
+    
   }
 
+
 }
+
+
 export default Home;
