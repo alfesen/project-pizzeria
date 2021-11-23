@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pizzeria</title>
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext"
+    rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="vendor/range-slider.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
   <header class="header">
@@ -17,6 +24,11 @@
         <div class="logo">
           <h1 class="logo__title"><span>Mamma</span>Mia!</h1>
           <h2 class="logo__subtitle">the best homemade Italian food</h2>
+        </div>
+        <div class="main-nav">
+          <a href="#home">Home</a>
+          <a href="#order">Order</a>
+          <a href="#booking">Booking</a>
         </div>
         <div id="cart" class="cart">
           <div class="cart__summary">
@@ -55,7 +67,83 @@
     </div>
   </header>
 
-  <div id="product-list" class="product-list container"></div>
+  <div id="pages">
+    <section id="order">
+      <div id="product-list" class="product-list container"></div>
+    </section>
+    <section id="booking">
+      <div class="booking-wrapper container"></div>
+    </section>
+    <section id="home">
+      <div id="home-page" class="home-page container"></div>
+    </section>
+  </div>
+
+  <script id="template-booking-widget" type="text/x-handlebars-template">
+    <div class="booking-widget container">
+      <h2 class="page__title no-spacing">Book a table</h2>
+      <form class="booking-form">
+        <div class="time-picker">
+          <div class="date-picker">
+            <label class="booking-option-title">Pick a date</label>
+            <input type="text" name="date">
+          </div>
+          <div class="hour-picker range-slider">
+              <div class="output"></div>
+              <label class="booking-option-title">Pick a time</label>
+            <input type="range" name="hour" value="12" min="12" max="24" step="0.5">
+          </div>
+        </div>
+        <div class="floor-plan">
+          <div class="object entry">entry</div>
+          <div class="object bar">bar</div>
+          <div class="object table" data-table="1">table-1</div>
+          <div class="object table table--round" data-table="2">table-2</div>
+          <div class="object table" data-table="3">table-3</div>
+        </div>
+        <div class="booking-options"> <!-- options -->
+          <label class="booking-option-title"> <!-- option-row -->
+            People
+            <div class="widget-amount people-amount"> <!-- widget-amount -->
+              <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
+              <input class="amount" type="text" name="people" value="1">
+              <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
+            </div>
+          </label>
+          <label class="booking-option-title"> <!-- option-row -->
+            Hours
+            <div class="widget-amount hours-amount"> <!-- widget-amount -->
+              <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
+              <input class="amount" type="text" name="hours" value="1">
+              <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
+            </div>
+          </label>
+          <div> <!-- option-row -->
+            <span class="booking-option-title">Starters</span>
+            <div class="checkbox"> <!-- checkbox -->
+              <label>
+                <input type="checkbox" name="starter" value="water">
+                <span class="checkbox__checkmark"></span>
+                Water
+              </label>
+            </div>
+            <div class="checkbox"> <!-- checkbox -->
+              <label>
+                <input type="checkbox" name="starter" value="bread">
+                <span class="checkbox__checkmark"></span>
+                Bread
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="order-confirmation">
+          <input type="tel" name="phone" placeholder="Your phone">
+          <input type="text" name="address" placeholder="Your address">
+          <button type="submit" class="btn-secondary">Book table</button>
+        </div>
+      </form>
+    </div>
+  </script>
 
   <script id="template-cart-product" type="text/x-handlebars-template">
     <li>
@@ -164,8 +252,104 @@
     </article> <!-- .product -->
   </script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
-  <script src="js/functions.js"></script>
-  <script src="js/script.js"></script>
+  <script id="template-home-page" type="text/x-handlebars-template">
+    <section>
+      <div class="start-page container">
+        <div id="starter" class="starter">
+            <div class="starter-line">
+              <div class="pizza-1">
+                <a class="link home-orders" href="#order">
+                  ORDER NOW
+                </a>
+              </div>
+              <div class="pizza-2">
+                <a class="link home-bookings" href="#booking">
+                  BOOK A TABLE
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="opening-div">
+            <h2 class="opening-hours">OPENING HOURS</h2>
+            <h3 class="schedule">TUE-SUN 12PX-13AM</h3>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="carousel" data-flickity='{ "cellAlign": "left", "contain": "true",  "autoPlay": true }'>
+            <div class="carousel-cell">
+              <div class="quote-image">
+                <img src="images/assets/pizza-3.jpg" alt="pizza-3">
+              </div>
+              <div class="quote-text">
+                <h3>AMAZING SERVICE </h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Hic tempora maiores labore repellendus aperiam,
+                  iusto sequi laboriosam, ratione quos praesentium eaque
+                  autem pariatur aliquam, ducimus fuga a quas unde facere?</p>
+                  <p class="quote-name">Margaret Osborne</p>
+              </div>
+            </div>
+
+            <div class="carousel-cell">
+              <div class="quote-image ">
+                <img src="images/assets/pizza-4.jpg" alt="pizza-4">
+              </div>
+              <div class="quote-text">
+                <h3>PERFECT PIZZA</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Hic tempora maiores labore repellendus aperiam,
+                  iusto sequi laboriosam, ratione quos praesentium eaque
+                  autem pariatur aliquam, ducimus fuga a quas unde facere?</p>
+                <p class="quote-name">Alice Hatfield</p>
+              </div>
+            </div>
+            <div class="carousel-cell">
+              <div class="quote-image">
+                <img src="images/assets/pizza-5.jpg" alt="pizza-5">
+              </div>
+              <div class="quote-text">
+                <h3>CUCUMBERS!</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Hic tempora maiores labore repellendus aperiam,
+                  iusto sequi laboriosam, ratione quos praesentium eaque
+                  autem pariatur aliquam, ducimus fuga a quas unde facere?</p>
+                  <p class="quote-name">Liam Nisson</p>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="container gallery">
+        <div class="row">
+          <img src="images/assets/pizza-6.jpg" alt="">
+          <img src="images/assets/pizza-7.jpg" alt="">
+          <img src="images/assets/pizza-1.jpg" alt="">
+        </div>
+        <div class="row">
+          <img src="images/assets/pizza-9.jpg" alt="">
+          <img src="images/assets/pizza-1.jpg" alt="">
+          <img src="images/assets/pizza-3.jpg" alt="">
+        </div>
+      </div>
+    </section>
+  </script>
+
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  <script>
+    $('.carousel').flickity({
+      // options
+      wrapAround: true,
+      freeScroll: true,
+      autoPlay: 1500,
+      pauseAutoPlayOnHover: false,
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+  <script src="vendor/range-slider.min.js"></script>
+  <script src="js/app.js" type="module"></script>
 </body>
+
 </html>
