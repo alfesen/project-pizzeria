@@ -9,6 +9,8 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext"
     rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="vendor/range-slider.min.css">
   <link rel="stylesheet" href="css/style.css">
@@ -73,12 +75,12 @@
       <div class="booking-wrapper container"></div>
     </section>
     <section id="home">
-      <div class="home-page container"></div>
+      <div id="home-page" class="home-page container"></div>
     </section>
   </div>
 
   <script id="template-booking-widget" type="text/x-handlebars-template">
-    <div class="booking-widget">
+    <div class="booking-widget container">
       <h2 class="page__title no-spacing">Book a table</h2>
       <form class="booking-form">
         <div class="time-picker">
@@ -250,94 +252,102 @@
     </article> <!-- .product -->
   </script>
 
-  <script id="#template-home-widget" type="text/x-handlebars-template">
-    
-    <div class="home-widget container">
-      <div class="start">
-        <a href="#orders">
-          <div class="pizza-1">
-            <h2 class ="link-text">ORDER NOW</h2>
-            <img src="images/assets/pizza-1.jpg" alt="pizza-1">
+  <script id="template-home-page" type="text/x-handlebars-template">
+    <section>
+      <div class="start-page container">
+        <div id="starter" class="starter">
+            <div class="starter-line">
+              <div class="pizza-1">
+                <a class="link home-orders" href="#order">
+                  ORDER NOW
+                </a>
+              </div>
+              <div class="pizza-2">
+                <a class="link home-bookings" href="#booking">
+                  BOOK A TABLE
+                </a>
+              </div>
+            </div>
           </div>
-        </a>
-        <a href="#bookings">
-          <div class="pizza-2">
-            <h2 class ="link-text">BOOK A TABLE</h2>
-            <img src="images/assets/pizza-2.jpg" alt="pizza-2">
-          </div>
-        </a>
-      </div>
-      <div class="opening-div">
-        <h2 class="opening-hours">OPENING HOURS</h2>
-        <h3 class="schedule">{{ opening hours }}</h3>
-      </div>
-    </div>
 
-    <div class="flickity-enabled flickity-viewport">
-      <div class="pizza-3 flickity-slider">
-        <div class="quote-image">
-          <img src="images/assets/pizza-3.jpg" alt="pizza-3">
+          <div class="opening-div">
+            <h2 class="opening-hours">OPENING HOURS</h2>
+            <h3 class="schedule">TUE-SUN 12PX-13AM</h3>
+          </div>
         </div>
-        <div class="quote-text">
-          <h3>AMAZING SERVICE </h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Hic tempora maiores labore repellendus aperiam, 
-            iusto sequi laboriosam, ratione quos praesentium eaque 
-            autem pariatur aliquam, ducimus fuga a quas unde facere?</p>
-            <p class="quote-name">Margaret Osborne</p>
+
+        <div class="container">
+          <div class="carousel" data-flickity='{ "cellAlign": "left", "contain": "true",  "autoPlay": true }'>
+            <div class="carousel-cell">
+              <div class="quote-image">
+                <img src="images/assets/pizza-3.jpg" alt="pizza-3">
+              </div>
+              <div class="quote-text">
+                <h3>AMAZING SERVICE </h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Hic tempora maiores labore repellendus aperiam,
+                  iusto sequi laboriosam, ratione quos praesentium eaque
+                  autem pariatur aliquam, ducimus fuga a quas unde facere?</p>
+                  <p class="quote-name">Margaret Osborne</p>
+              </div>
+            </div>
+
+            <div class="carousel-cell">
+              <div class="quote-image ">
+                <img src="images/assets/pizza-4.jpg" alt="pizza-4">
+              </div>
+              <div class="quote-text">
+                <h3>PERFECT PIZZA</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Hic tempora maiores labore repellendus aperiam,
+                  iusto sequi laboriosam, ratione quos praesentium eaque
+                  autem pariatur aliquam, ducimus fuga a quas unde facere?</p>
+                <p class="quote-name">Alice Hatfield</p>
+              </div>
+            </div>
+            <div class="carousel-cell">
+              <div class="quote-image">
+                <img src="images/assets/pizza-5.jpg" alt="pizza-5">
+              </div>
+              <div class="quote-text">
+                <h3>CUCUMBERS!</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Hic tempora maiores labore repellendus aperiam,
+                  iusto sequi laboriosam, ratione quos praesentium eaque
+                  autem pariatur aliquam, ducimus fuga a quas unde facere?</p>
+                  <p class="quote-name">Liam Nisson</p>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="container gallery">
+        <div class="row">
+          <img src="images/assets/pizza-6.jpg" alt="">
+          <img src="images/assets/pizza-7.jpg" alt="">
+          <img src="images/assets/pizza-1.jpg" alt="">
+        </div>
+        <div class="row">
+          <img src="images/assets/pizza-9.jpg" alt="">
+          <img src="images/assets/pizza-1.jpg" alt="">
+          <img src="images/assets/pizza-3.jpg" alt="">
         </div>
       </div>
-      <div class="pizza-4 flickity-slider">
-        <div class="quote-image ">
-          <img src="images/assets/pizza-4.jpg" alt="pizza-4">
-        </div>
-        <div class="quote-text">
-          <h3>PERFECT PIZZA</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Hic tempora maiores labore repellendus aperiam, 
-            iusto sequi laboriosam, ratione quos praesentium eaque 
-            autem pariatur aliquam, ducimus fuga a quas unde facere?</p>
-          <p class="quote-name">Alice Hatfield</p>
-        </div>
-      </div>
-      <div class="pizza-5 flickity-slider">
-        <div class="quote-image">
-          <img src="images/assets/pizza-5.jpg" alt="pizza-5">
-        </div>
-        <div class="quote-text">
-          <h3>CUCUMBERS!</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Hic tempora maiores labore repellendus aperiam, 
-            iusto sequi laboriosam, ratione quos praesentium eaque 
-            autem pariatur aliquam, ducimus fuga a quas unde facere?</p>
-          <p class="quote-name">Liam Nisson</p>
-        </div>
-      </div>
-    </div>
-    <div class="gallery">
-      <div class="pizza-6">
-        <img src="images/assets/pizza-6.jpg" alt="pizza-6">
-        
-      </div>
-      <div class="pizza-6">
-        <img src="images/assets/pizza-6.jpg" alt="pizza-6">
-      </div>
-      <div class="pizza-6">
-        <img src="images/assets/pizza-6.jpg" alt="pizza-6">
-      </div>
-      <div class="pizza-6">
-        <img src="images/assets/pizza-6.jpg" alt="pizza-6">
-      </div>
-      <div class="pizza-6">
-        <img src="images/assets/pizza-6.jpg" alt="pizza-6">
-      </div>
-      <div class="pizza-6">
-        <img src="images/assets/pizza-6.jpg" alt="pizza-6">
-      </div>
-    </div>
+    </section>
   </script>
+
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  <script>
+    $('.carousel').flickity({
+      // options
+      wrapAround: true,
+      freeScroll: true,
+      autoPlay: 1500,
+      pauseAutoPlayOnHover: false,
+    });
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
   <script src="vendor/range-slider.min.js"></script>
   <script src="js/app.js" type="module"></script>
 </body>
